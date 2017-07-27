@@ -17,6 +17,7 @@ def my_request():
 
 
 class RequestThread(threading.Thread):
+    """发请求的线程"""
     def __init__(self, thread_name, test_data):
         threading.Thread.__init__(self)
         self.thread_name = thread_name
@@ -31,6 +32,12 @@ class RequestThread(threading.Thread):
 
 
 def get_test_data(data_file, data_count):
+    """
+    读取测试数据
+    :param data_file: 数据文件
+    :param data_count: 数据条数
+    :return: 数据list
+    """
 
     test_data = []
     with open(data_file, 'r') as f:
@@ -40,6 +47,13 @@ def get_test_data(data_file, data_count):
 
 
 def thread_group(group_no, thread_count, test_data):
+    """
+    线程组
+    :param group_no: 线程组编号
+    :param thread_count: 线程数量
+    :param test_data: 测试数据list
+    :return:
+    """
 
     threads = []   # 线程list
     data_count = len(test_data)  # 测试数据条数
@@ -61,6 +75,14 @@ def thread_group(group_no, thread_count, test_data):
 
 
 def stress_test(data_file, data_count, thread_count, concurrent_duration, ):
+    """
+    压力测试入口
+    :param data_file: 测试数据文件
+    :param data_count: 测试数据条数
+    :param thread_count: 线程数量
+    :param concurrent_duration: 并发持续时长
+    :return:
+    """
 
     test_data = None
     if data_file is not None and data_count != 0:
